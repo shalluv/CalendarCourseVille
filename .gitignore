@@ -1,1 +1,26 @@
+# Secret
+.env
+
+# Dependency directories
 node_modules/
+
+# Logs
+logs
+*.log
+
+# Editor
+.vscode
+.vscode-test
+*.sublime-project
+*.sublime-workspace
+sftp-config.json
+
+# Random crap
+trash
+.DS_Store
+.sass-cache
+.tmp
+.rvmrc
+.trashes
+*~
+.cache/
