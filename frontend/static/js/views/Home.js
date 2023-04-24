@@ -8,16 +8,6 @@ export default class extends AbstractView {
 
   async getHtml() {
     return `
-		<div class="container">
-		<header class="header">
-			<h1 class="header__month">April</h1>
-			<h1 class="header__year">2023</h1>
-		</header>
-		<button
-			class="previous__week__button"
-			onclick="alert('Go to previous week!')"
-			style="display: none"
-		></button>
 		<ul class="week">
 			<li class="day">
 				<h2 class="day__label">Mon</h2>
@@ -240,29 +230,6 @@ export default class extends AbstractView {
 				</div>
 			</li>
 		</ul>
-		<button
-		class="next__week__button"
-		onclick="alert('Go to next week!')"
-		></button>
-		<button class="add__reminder__button">+ Add reminders</button>
-		<footer class="footer">
-			<ul class="filters__container">
-				<li class="filter">
-					<span class="filter__label">Class</span>
-					<input type="checkbox" class="filter__checkbox" checked="checked" />
-				</li>
-				<li class="filter">
-					<span class="filter__label">Assignments</span>
-					<input type="checkbox" class="filter__checkbox" checked="checked" />
-				</li>
-				<li class="filter">
-					<span class="filter__label">Reminders</span>
-					<input type="checkbox" class="filter__checkbox" checked="checked" />
-				</li>
-			</ul>
-			<button class="info__button" onclick="alert('Open sidebar!')">i</button>
-		</footer>
-	</div>
 	
 	
 	`;
