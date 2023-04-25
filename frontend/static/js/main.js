@@ -1,9 +1,9 @@
 const login = () => {
-  window.location.href = 'http://localhost:3000/courseville/auth_app';
+  window.location.href = `http://127.0.0.1:3000/courseville/auth_app`;
 };
 
 const logout = () => {
-  window.location.href = `http://localhost:3000/courseville/logout`;
+  window.location.href = `http://127.0.0.1:3000/courseville/logout`;
 };
 
 const getUserProfile = async () => {
@@ -12,10 +12,14 @@ const getUserProfile = async () => {
     credentials: 'include',
   };
 
-  await fetch('http://localhost:3000/courseville/get_profile_info', options)
+  await fetch(`http://127.0.0.1:3000/courseville/get_profile_info`, options)
     .then((response) => response.json())
     .then((data) => {
-      document.getElementById('username').innerHTML = data.user.firstname_en;
+      document.getElementById('login__label').classList.add('hide');
+      document.getElementById('username__label').classList.remove('hide');
+      document.getElementById('logout__label').classList.remove('hide');
+      document.getElementById('username__label').innerHTML =
+        data.user.firstname_en;
     })
     .catch((error) => console.error(error));
 };
