@@ -5,7 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Com eng ess</title>
-    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="stylesheet" href="static/css/main.css" />
+    <link rel="stylesheet" href="static/css/header.css" />
+    <link rel="stylesheet" href="static/css/footer.css" />
+    <link rel="stylesheet" href="static/css/sidebar.css" />
+    <link rel="stylesheet" href="static/css/weekslider.css" />
+    <link rel="stylesheet" href="static/css/remindermodal.css" />
     <link rel="icon" type="image/png" href="static/images/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,7 +20,7 @@
     />
     <script src="static/js/main.js" defer></script>
   </head>
-  <body>
+  <body onload="getUserProfile();">
     <div class="container">
       <header class="header">
         <h1 class="header__month">April</h1>
@@ -35,37 +40,39 @@
         class="next__week__button"
         onclick="goToNextWeek();"
       ></button>
-      <button
-        title="add reminder"
-        class="add__reminder__button"
-        onclick="toggleReminderModal();"
-      >
-        + Add reminders
-      </button>
-      <ul class="reminder__modal close">
-        <label class="reminder__modal__close" onclick="toggleReminderModal();"
-          >X</label
+      <div class="reminder__holder">
+        <button
+          title="add reminder"
+          class="add__reminder__button"
+          onclick="toggleReminderModal();"
         >
-        <label class="reminder__input__label">Title: </label>
-        <input
-          class="reminder__input"
-          type="text"
-          name="title"
-          placeholder="Please insert the title"
-        />
-        <label class="reminder__input__label">Day: </label>
-        <input class="reminder__input" type="date" name="day" />
-        <label class="reminder__input__label">Time: </label>
-        <input class="reminder__input" type="time" name="time" />
-        <label class="reminder__input__label">Link: </label>
-        <input
-          class="reminder__input"
-          type="text"
-          name="link"
-          placeholder="Please insert the link"
-        />
-        <button class="reminder__submit">Submit</button>
-      </ul>
+          + Add reminders
+        </button>
+        <ul class="reminder__modal close">
+          <label class="reminder__modal__close" onclick="toggleReminderModal();"
+            >X</label
+          >
+          <label class="reminder__input__label">Title: </label>
+          <input
+            class="reminder__input"
+            type="text"
+            name="title"
+            placeholder="Please insert the title"
+          />
+          <label class="reminder__input__label">Day: </label>
+          <input class="reminder__input" type="date" name="day" />
+          <label class="reminder__input__label">Time: </label>
+          <input class="reminder__input" type="time" name="time" />
+          <label class="reminder__input__label">Link: </label>
+          <input
+            class="reminder__input"
+            type="text"
+            name="link"
+            placeholder="Please insert the link"
+          />
+          <button class="reminder__submit">Submit</button>
+        </ul>
+      </div>
       <footer class="footer">
         <ul class="filters__container">
           <li class="filter">
@@ -107,8 +114,10 @@
       <ul class="sidebar close">
         <li class="sidebar__close" onclick="toggleSidebar();">X</li>
         <li class="sidebar__item" onclick="login();">Login</li>
+        <li class="sidebar__item" id="username">Username</li>
         <li class="sidebar__item">Help</li>
         <li class="sidebar__item">About Us</li>
+        <li class="sidebar__item" onclick="logout();">About Us</li>
       </ul>
     </div>
     <script type="module" src="static/js/router.js"></script>

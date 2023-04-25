@@ -1,0 +1,37 @@
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 100%;
+  min-width: 224px;
+  width: 15%;
+  transform: translateX(-100%);
+  background-color: #212021;
+  color: #f8f7fa;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 5rem 1.5rem;
+  transition: transform 0.3s ease-in-out;
+  gap: 1.5rem;
+}
+
+.sidebar.close {
+  transform: translateX(0);
+}
+
+.sidebar__item {
+  cursor: pointer;
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+  color: rgba(248, 247, 250, 0.64);
+  text-shadow: 0px 0px 40px rgba(0, 0, 0, 0.25);
+}
+
+.sidebar__close {
+  position: absolute;
+  top: 3.5rem;
+  right: 2.5rem;
+  font-size: 1.5rem;
+  color: rgba(248, 247, 250, 0.64);
+  cursor: pointer;
+}
