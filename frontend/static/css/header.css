@@ -1,0 +1,18 @@
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__month {
+  font-weight: 700;
+  font-size: 3.5rem;
+  color: #f8f7fa;
+}
+
+.header__year {
+  font-weight: 700;
+  font-size: 3.5rem;
+  letter-spacing: 0.06em;
+  color: rgba(221, 224, 255, 0.5);
+}

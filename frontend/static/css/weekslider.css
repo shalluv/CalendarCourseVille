@@ -1,0 +1,171 @@
+.week {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  height: fit-content;
+  min-height: 300px;
+  margin-top: 1.25rem;
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.day__label {
+  text-align: right;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: rgba(248, 247, 250, 0.64);
+  letter-spacing: 0.02em;
+  padding: 0 1rem;
+}
+
+.card {
+  border: 1px solid #3a3a3a;
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card__date {
+  font-weight: 600;
+  font-size: 1.5rem;
+  text-align: right;
+  color: #f8f7fa;
+  padding: 0.25rem 0.25rem;
+  text-shadow: 0px 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.card__date.today {
+  background-color: #1bd45a;
+  border-radius: 100%;
+  padding: 0.25rem 0.25rem;
+  width: fit-content;
+  margin-left: auto;
+  color: #28272a;
+}
+
+.card__event {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.event__start__time {
+  font-weight: 400;
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  color: #adabae;
+  text-shadow: 0px 9px 10px rgba(0, 0, 0, 0.25);
+}
+
+.event__end__time {
+  font-weight: 400;
+  font-size: 0.625rem;
+  letter-spacing: 0.08em;
+  color: #adabae;
+  text-shadow: 0px 9px 10px rgba(0, 0, 0, 0.25);
+  text-align: right;
+}
+
+.event__item {
+  width: 100%;
+  min-height: 2.25rem;
+  border-radius: 1.5rem;
+  background-color: #3a3a3a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.25rem 0.5rem 0.25rem 1rem;
+}
+
+.event__item.zoom {
+  background: rgba(18, 153, 230, 0.29);
+}
+
+.event__item.onsite {
+  background: #1b4929;
+}
+
+.event__item.assignment {
+  background: #652e4d;
+}
+
+.event__name {
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: #ffffff;
+}
+
+.event__icon__holder {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.event__icon {
+  width: 100%;
+  height: 100%;
+}
+
+.now__label {
+  text-align: center;
+  font-weight: 400;
+  font-size: 0.625rem;
+  letter-spacing: 0.07em;
+  color: #adabae;
+  text-shadow: 0px 9px 10px rgba(0, 0, 0, 0.25);
+}
+
+.next__week__button,
+.previous__week__button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  position: fixed;
+  width: 1rem;
+  height: 1rem;
+  border-left: solid 0.2em #fff;
+  border-top: solid 0.2em #fff;
+}
+
+.next__week__button {
+  right: 2%;
+  transform: rotate(135deg);
+}
+
+.previous__week__button {
+  left: 2%;
+  transform: rotate(315deg);
+}
+
+.week__button {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media screen and (max-width: 900px) {
+  .week {
+    max-width: 32rem;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  .next__week__button,
+  .previous__week__button {
+    bottom: 5%;
+  }
+
+  .next__week__button {
+    left: 80%;
+  }
+
+  .previous__week__button {
+    left: 20%;
+  }
+}
