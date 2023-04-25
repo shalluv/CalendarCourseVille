@@ -113,11 +113,15 @@
       </footer>
       <ul class="sidebar close">
         <li class="sidebar__close" onclick="toggleSidebar();">X</li>
-        <li class="sidebar__item" onclick="login();">Login</li>
-        <li class="sidebar__item" id="username">Username</li>
+        <li class="sidebar__item" onclick="login();" id="login__label">
+          Login
+        </li>
+        <li class="sidebar__item hide" id="username__label"></li>
         <li class="sidebar__item">Help</li>
         <li class="sidebar__item">About Us</li>
-        <li class="sidebar__item" onclick="logout();">About Us</li>
+        <li class="sidebar__item hide" onclick="logout();" id="logout__label">
+          Logout
+        </li>
       </ul>
     </div>
     <script type="module" src="static/js/router.js"></script>
