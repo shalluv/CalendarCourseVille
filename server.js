@@ -3,6 +3,9 @@ const path = require('path');
 
 const app = express();
 
+a = 2;
+console.log(a);
+
 app.use(
   '/static',
   express.static(path.resolve(__dirname, 'frontend', 'static'))
