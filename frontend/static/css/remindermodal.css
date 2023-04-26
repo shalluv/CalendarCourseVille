@@ -82,6 +82,7 @@
   color: #adabae;
   cursor: pointer;
 }
+
 @media screen and (max-width: 900px) {
   .add__reminder__button {
     margin-bottom: 4rem;
