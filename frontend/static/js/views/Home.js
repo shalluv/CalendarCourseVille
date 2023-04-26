@@ -20,7 +20,7 @@ export default class extends AbstractView {
 							<div class="event__icon__holder">
 								<img
 									class="event__icon"
-									src="./static/images/icon__zoom.svg"
+									src="./static/images/icon-zoom.svg"
 									alt="icon for zoom event"
 								/>
 							</div>
@@ -30,7 +30,7 @@ export default class extends AbstractView {
 							<div class="event__icon__holder">
 								<img
 									class="event__icon"
-									src="./static/images/icon__zoom.svg"
+									src="./static/images/icon-zoom.svg"
 									alt="icon for zoom event"
 								/>
 							</div>
@@ -44,7 +44,7 @@ export default class extends AbstractView {
 							<div class="event__icon__holder">
 								<img
 									class="event__icon"
-									src="./static/images/icon__onsite.svg"
+									src="./static/images/icon-onsite.svg"
 									alt="icon for onsite event"
 								/>
 							</div>
@@ -59,12 +59,12 @@ export default class extends AbstractView {
 					<h3 class="card__date">18</h3>
 					<div class="card__event">
 						<h4 class="event__start__time">9:30 a.m.</h4>
-						<div class="event__item zoom">
+						<div class="event__item onsite">
 							<p class="event__name">Embedded Sys</p>
 							<div class="event__icon__holder">
 								<img
 									class="event__icon"
-									src="./static/images/icon__onsite.svg"
+									src="./static/images/icon-onsite.svg"
 									alt="icon for onsite event"
 								/>
 							</div>
@@ -84,7 +84,7 @@ export default class extends AbstractView {
 							<div class="event__icon__holder">
 								<img
 									class="event__icon"
-									src="./static/images/icon__onsite.svg"
+									src="./static/images/icon-onsite.svg"
 									alt="icon for onsite event"
 								/>
 							</div>
@@ -98,7 +98,7 @@ export default class extends AbstractView {
 							<div class="event__icon__holder">
 								<img
 									class="event__icon"
-									src="./static/images/icon__onsite.svg"
+									src="./static/images/icon-onsite.svg"
 									alt="icon for onsite event"
 								/>
 							</div>
@@ -118,7 +118,7 @@ export default class extends AbstractView {
 							<div class="event__icon__holder">
 								<img
 									class="event__icon"
-									src="./static/images/icon__zoom.svg"
+									src="./static/images/icon-zoom.svg"
 									alt="icon for zoom event"
 								/>
 							</div>
@@ -128,7 +128,7 @@ export default class extends AbstractView {
 							<div class="event__icon__holder">
 								<img
 									class="event__icon"
-									src="./static/images/icon__zoom.svg"
+									src="./static/images/icon-zoom.svg"
 									alt="icon for zoom event"
 								/>
 							</div>
@@ -142,7 +142,7 @@ export default class extends AbstractView {
 							<div class="event__icon__holder">
 								<img
 									class="event__icon"
-									src="./static/images/icon__onsite.svg"
+									src="./static/images/icon-onsite.svg"
 									alt="icon for onsite event"
 								/>
 							</div>
@@ -162,7 +162,7 @@ export default class extends AbstractView {
 							<div class="event__icon__holder">
 								<img
 									class="event__icon"
-									src="./static/images/icon__zoom.svg"
+									src="./static/images/icon-zoom.svg"
 									alt="icon for zoom event"
 								/>
 							</div>
@@ -172,7 +172,7 @@ export default class extends AbstractView {
 							<div class="event__icon__holder">
 								<img
 									class="event__icon"
-									src="./static/images/icon__zoom.svg"
+									src="./static/images/icon-zoom.svg"
 									alt="icon for zoom event"
 								/>
 							</div>
@@ -186,7 +186,7 @@ export default class extends AbstractView {
 							<div class="event__icon__holder">
 								<img
 									class="event__icon"
-									src="./static/images/icon__onsite.svg"
+									src="./static/images/icon-onsite.svg"
 									alt="icon for onsite event"
 								/>
 							</div>
@@ -221,7 +221,7 @@ export default class extends AbstractView {
 							<div class="event__icon__holder">
 								<img
 									class="event__icon"
-									src="./static/images/icon__assignment.svg"
+									src="./static/images/icon-assignment.svg"
 									alt="icon for assignment event"
 								/>
 							</div>
