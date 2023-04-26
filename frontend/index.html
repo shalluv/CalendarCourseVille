@@ -20,89 +20,13 @@
     />
     <script src="static/js/main.js" defer></script>
   </head>
-  <body onload="getUserProfile();">
+  <body>
     <div class="container">
-      <header class="header">
-        <h1 class="header__month">April</h1>
-        <h1 class="header__year">2023</h1>
-      </header>
-      <button
-        title="Go to previous week"
-        class="previous__week__button"
-        onclick="goToPreviousWeek();"
-        style="display: none"
-      ></button>
-
       <main id="app"></main>
-
-      <button
-        title="Go to next week"
-        class="next__week__button"
-        onclick="goToNextWeek();"
-      ></button>
-      <div class="reminder__holder">
-        <button
-          title="add reminder"
-          class="add__reminder__button"
-          onclick="toggleReminderModal();"
-        >
-          + Add reminders
-        </button>
-        <ul class="reminder__modal close">
-          <label class="reminder__modal__close" onclick="toggleReminderModal();"
-            >X</label
-          >
-          <label class="reminder__input__label">Title: </label>
-          <input
-            class="reminder__input"
-            type="text"
-            name="title"
-            placeholder="Please insert the title"
-          />
-          <label class="reminder__input__label">Day: </label>
-          <input class="reminder__input" type="date" name="day" />
-          <label class="reminder__input__label">Time: </label>
-          <input class="reminder__input" type="time" name="time" />
-          <label class="reminder__input__label">Link: </label>
-          <input
-            class="reminder__input"
-            type="text"
-            name="link"
-            placeholder="Please insert the link"
-          />
-          <button class="reminder__submit">Confirm</button>
-        </ul>
-      </div>
+      <button id="login__button" class="login__button" onclick="login();">
+        Login
+      </button>
       <footer class="footer">
-        <ul class="filters__container">
-          <li class="filter">
-            <span class="filter__label">Classes</span>
-            <input
-              title="checkbox for filtering classes"
-              type="checkbox"
-              class="filter__checkbox"
-              checked="checked"
-            />
-          </li>
-          <li class="filter">
-            <span class="filter__label">Assignments</span>
-            <input
-              title="checkbox for filtering assignments"
-              type="checkbox"
-              class="filter__checkbox"
-              checked="checked"
-            />
-          </li>
-          <li class="filter">
-            <span class="filter__label">Reminders</span>
-            <input
-              title="checkbox for filtering reminders"
-              type="checkbox"
-              class="filter__checkbox"
-              checked="checked"
-            />
-          </li>
-        </ul>
         <button
           title="Open setting"
           class="info__button"

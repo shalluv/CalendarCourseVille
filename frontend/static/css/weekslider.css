@@ -29,6 +29,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  max-height: 16rem;
+  overflow-y: auto;
 }
 
 .card__date {
@@ -95,20 +97,26 @@
   background: #652e4d;
 }
 
-.event__name {
+.event__item__title {
   font-weight: 500;
   font-size: 0.75rem;
   color: #ffffff;
+  max-width: 75%;
 }
 
 .event__icon__holder {
-  width: 1.5rem;
-  height: 1.5rem;
+  height: 100%;
+  width: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .event__icon {
   width: 100%;
   height: 100%;
+  max-width: 1.5rem;
+  max-height: 1.5rem;
 }
 
 .now__label {
@@ -131,15 +139,17 @@
   height: 1rem;
   border-left: solid 0.2em #fff;
   border-top: solid 0.2em #fff;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .next__week__button {
-  right: 2%;
+  right: 2rem;
   transform: rotate(135deg);
 }
 
 .previous__week__button {
-  left: 2%;
+  left: 2rem;
   transform: rotate(315deg);
 }
 
