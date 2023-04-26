@@ -1,237 +1,165 @@
 import AbstractView from './AbstractView.js';
 
 export default class extends AbstractView {
-  constructor() {
-    super();
+  constructor(params) {
+    super(params);
     this.setTitle('Home');
+    this.addCheckboxesToFooter();
+
+    this.now = new Date();
+    this.days = Array.from(
+      { length: 7 },
+      (_, i) =>
+        new Date(
+          this.now.getFullYear(),
+          this.now.getMonth(),
+          this.now.getDate() -
+            this.now.getDay() +
+            i +
+            (params.weekOffset ?? 0) * 7
+        )
+    );
   }
 
   async getHtml() {
     return `
-		<ul class="week">
-			<li class="day">
-				<h2 class="day__label">Mon</h2>
-				<div class="card">
-					<h3 class="card__date">17</h3>
-					<div class="card__event">
-						<h4 class="event__start__time">8:00 a.m.</h4>
-						<div class="event__item zoom">
-							<p class="event__name">Com Eng Math</p>
-							<div class="event__icon__holder">
-								<img
-									class="event__icon"
-									src="./static/images/icon-zoom.svg"
-									alt="icon for zoom event"
-								/>
-							</div>
-						</div>
-						<div class="event__item zoom">
-							<p class="event__name">Algorithm</p>
-							<div class="event__icon__holder">
-								<img
-									class="event__icon"
-									src="./static/images/icon-zoom.svg"
-									alt="icon for zoom event"
-								/>
-							</div>
-						</div>
-						<h4 class="event__end__time">11:00 a.m.</h4>
-					</div>
-					<div class="card__event">
-						<h4 class="event__start__time">1:00 p.m.</h4>
-						<div class="event__item onsite">
-							<p class="event__name">Prog Lang Prin</p>
-							<div class="event__icon__holder">
-								<img
-									class="event__icon"
-									src="./static/images/icon-onsite.svg"
-									alt="icon for onsite event"
-								/>
-							</div>
-						</div>
-						<h4 class="event__end__time">4:00 p.m.</h4>
-					</div>
-				</div>
-			</li>
-			<li class="day">
-				<h2 class="day__label">Tue</h2>
-				<div class="card">
-					<h3 class="card__date">18</h3>
-					<div class="card__event">
-						<h4 class="event__start__time">9:30 a.m.</h4>
-						<div class="event__item onsite">
-							<p class="event__name">Embedded Sys</p>
-							<div class="event__icon__holder">
-								<img
-									class="event__icon"
-									src="./static/images/icon-onsite.svg"
-									alt="icon for onsite event"
-								/>
-							</div>
-						</div>
-						<h4 class="event__end__time">0:30 p.m.</h4>
-					</div>
-				</div>
-			</li>
-			<li class="day">
-				<h2 class="day__label">Wed</h2>
-				<div class="card">
-					<h3 class="card__date">19</h3>
-					<div class="card__event">
-						<h4 class="event__start__time">9:30 a.m.</h4>
-						<div class="event__item onsite">
-							<p class="event__name">Com Eng Ess</p>
-							<div class="event__icon__holder">
-								<img
-									class="event__icon"
-									src="./static/images/icon-onsite.svg"
-									alt="icon for onsite event"
-								/>
-							</div>
-						</div>
-						<h4 class="event__end__time">0:30 p.m.</h4>
-					</div>
-					<div class="card__event">
-						<h4 class="event__start__time">1:00 p.m.</h4>
-						<div class="event__item onsite">
-							<p class="event__name">Com Press Skill</p>
-							<div class="event__icon__holder">
-								<img
-									class="event__icon"
-									src="./static/images/icon-onsite.svg"
-									alt="icon for onsite event"
-								/>
-							</div>
-						</div>
-						<h4 class="event__end__time">4:00 p.m.</h4>
-					</div>
-				</div>
-			</li>
-			<li class="day">
-				<h2 class="day__label">Thu</h2>
-				<div class="card">
-					<h3 class="card__date">20</h3>
-					<div class="card__event">
-						<h4 class="event__start__time">8:00 a.m.</h4>
-						<div class="event__item zoom">
-							<p class="event__name">Com Eng Math</p>
-							<div class="event__icon__holder">
-								<img
-									class="event__icon"
-									src="./static/images/icon-zoom.svg"
-									alt="icon for zoom event"
-								/>
-							</div>
-						</div>
-						<div class="event__item zoom">
-							<p class="event__name">Algorithm</p>
-							<div class="event__icon__holder">
-								<img
-									class="event__icon"
-									src="./static/images/icon-zoom.svg"
-									alt="icon for zoom event"
-								/>
-							</div>
-						</div>
-						<h4 class="event__end__time">11:00 a.m.</h4>
-					</div>
-					<div class="card__event">
-						<h4 class="event__start__time">1:00 p.m.</h4>
-						<div class="event__item onsite">
-							<p class="event__name">Embedded Lab</p>
-							<div class="event__icon__holder">
-								<img
-									class="event__icon"
-									src="./static/images/icon-onsite.svg"
-									alt="icon for onsite event"
-								/>
-							</div>
-						</div>
-						<h4 class="event__end__time">4:00 p.m.</h4>
-					</div>
-				</div>
-			</li>
-			<li class="day">
-				<h2 class="day__label">Fri</h2>
-				<div class="card">
-					<h3 class="card__date">21</h3>
-					<div class="card__event">
-						<h4 class="event__start__time">8:00 a.m.</h4>
-						<div class="event__item zoom">
-							<p class="event__name">Com Eng Math</p>
-							<div class="event__icon__holder">
-								<img
-									class="event__icon"
-									src="./static/images/icon-zoom.svg"
-									alt="icon for zoom event"
-								/>
-							</div>
-						</div>
-						<div class="event__item zoom">
-							<p class="event__name">Algorithm</p>
-							<div class="event__icon__holder">
-								<img
-									class="event__icon"
-									src="./static/images/icon-zoom.svg"
-									alt="icon for zoom event"
-								/>
-							</div>
-						</div>
-						<h4 class="event__end__time">11:00 a.m.</h4>
-					</div>
-					<div class="card__event">
-						<h4 class="event__start__time">1:00 p.m.</h4>
-						<div class="event__item onsite">
-							<p class="event__name">Embedded Lab</p>
-							<div class="event__icon__holder">
-								<img
-									class="event__icon"
-									src="./static/images/icon-onsite.svg"
-									alt="icon for onsite event"
-								/>
-							</div>
-						</div>
-						<h4 class="event__end__time">4:00 p.m.</h4>
-					</div>
-					<div class="card__event"></div>
-				</div>
-			</li>
-			<li class="day">
-				<h2 class="day__label">Sat</h2>
-				<div class="card">
-					<h3 class="card__date">22</h3>
-				</div>
-			</li>
-			<li class="day">
-				<h2 class="day__label">Sun</h2>
-				<div class="card">
-					<h3 class="card__date today">23</h3>
-					<div class="card__event">
-						<h4 class="now__label">Now -> 8:50 p.m.</h4>
-						<h4 class="event__start__time">9:00 a.m.</h4>
-						<div class="event__item onsite">
-							<p class="event__name">Weekly Meeting</p>
-						</div>
-						<h4 class="event__end__time">10:00 p.m.</h4>
-					</div>
-					<div class="card__event">
-						<h4 class="event__start__time class">0:00 p.m.</h4>
-						<div class="event__item assignment">
-							<p class="event__name">HW Univ Thai</p>
-							<div class="event__icon__holder">
-								<img
-									class="event__icon"
-									src="./static/images/icon-assignment.svg"
-									alt="icon for assignment event"
-								/>
-							</div>
-						</div>
-					</div>
-				</div>
-			</li>
-		</ul>
-	
-	
-	`;
+		${await this.getHeader()}
+		<button
+			title="Go to previous week"
+			class="previous__week__button"
+			onclick="goToPreviousWeek();"
+		></button>
+		${await this.getCalendar()}
+		<button
+			title="Go to next week"
+			class="next__week__button"
+			onclick="goToNextWeek();"
+		></button>
+		<div class="reminder__holder hide" id="reminder__holder">
+			<button
+				title="add reminder"
+				class="add__reminder__button"
+				onclick="toggleReminderModal();"
+			>
+				+ Add reminders
+			</button>
+			<ul class="reminder__modal close">
+				<label class="reminder__modal__close" onclick="toggleReminderModal();"
+					>X</label
+				>
+				<label class="reminder__input__label">Title: </label>
+				<input
+					class="reminder__input"
+					type="text"
+					name="title"
+					placeholder="Please insert the title"
+				/>
+				<label class="reminder__input__label">Day: </label>
+				<input class="reminder__input" type="date" name="day" />
+				<label class="reminder__input__label">Time: </label>
+				<input class="reminder__input" type="time" name="time" />
+				<label class="reminder__input__label">Link: </label>
+				<input
+					class="reminder__input"
+					type="text"
+					name="link"
+					placeholder="Please insert the link"
+				/>
+				<button class="reminder__submit">Confirm</button>
+			</ul>
+		</div>`;
+  }
+
+  async addCheckboxesToFooter() {
+    const footer = document.querySelector('.footer');
+    const filters_container = document.createElement('ul');
+    filters_container.classList.add('filters__container');
+    const filters = ['Classes', 'Assignments', 'Reminders'];
+    filters.forEach((filter) => {
+      const filter_li = document.createElement('li');
+      filter_li.classList.add('filter');
+      const filter_label = document.createElement('span');
+      filter_label.classList.add('filter__label');
+      filter_label.innerHTML = filter;
+      const filter_checkbox = document.createElement('input');
+      filter_checkbox.title = `checkbox for filtering ${filter.toLowerCase()}`;
+      filter_checkbox.type = 'checkbox';
+      filter_checkbox.classList.add('filter__checkbox');
+      filter_checkbox.checked = true;
+      filter_li.appendChild(filter_label);
+      filter_li.appendChild(filter_checkbox);
+      filters_container.appendChild(filter_li);
+    });
+    footer.prepend(filters_container);
+  }
+
+  async getCalendar() {
+    const week_slider = document.createElement('ul');
+    week_slider.classList.add('week');
+    week_slider.id = 'week_slider';
+
+    this.days.forEach((day) => {
+      const day_li = document.createElement('li');
+      day_li.classList.add('day');
+      const day_label = document.createElement('h2');
+      day_label.classList.add('day__label');
+      day_label.innerHTML = day.toLocaleDateString('en-US', {
+        weekday: 'short',
+      });
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.id = `${day.getFullYear()}-${day.getMonth()}-${day.getDate()}`;
+      const card_date = document.createElement('h3');
+      card_date.classList.add('card__date');
+      if (
+        Math.floor(day.getTime() / (1000 * 60 * 60 * 24)) ===
+        Math.floor(this.now.getTime() / (1000 * 60 * 60 * 24))
+      ) {
+        card_date.classList.add('today');
+      }
+      card_date.innerHTML = day.getDate();
+      card.appendChild(card_date);
+      day_li.appendChild(day_label);
+      day_li.appendChild(card);
+      week_slider.appendChild(day_li);
+    });
+
+    return week_slider.outerHTML;
+  }
+
+  async getHeader() {
+    const header = document.createElement('header');
+    header.classList.add('header');
+    const month = document.createElement('h1');
+    month.classList.add('header__month');
+    const year = document.createElement('h1');
+    year.classList.add('header__year');
+    header.appendChild(month);
+    header.appendChild(year);
+
+    this.setMonthAndYear(
+      month,
+      year,
+      this.days[0],
+      this.days[this.days.length - 1]
+    );
+
+    return header.outerHTML;
+  }
+
+  setMonthAndYear(monthElement, yearElement, startOfWeek, endOfWeek) {
+    monthElement.innerHTML = `${startOfWeek.toLocaleDateString('en-US', {
+      month: 'long',
+    })}${
+      startOfWeek.getMonth() === endOfWeek.getMonth()
+        ? ''
+        : ` - ${endOfWeek.toLocaleDateString('en-US', { month: 'long' })}`
+    }`;
+
+    yearElement.innerHTML = `${startOfWeek.getFullYear()}${
+      startOfWeek.getFullYear() === endOfWeek.getFullYear()
+        ? ''
+        : ` - ${endOfWeek.getFullYear()}`
+    }`;
   }
 }

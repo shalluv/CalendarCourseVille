@@ -1,4 +1,5 @@
-.add__reminder__button {
+.add__reminder__button,
+.login__button {
   margin-top: 3rem;
   background-color: #3b3c41;
   width: 16rem;
@@ -22,6 +23,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.reminder__holder.hide,
+.login__button.hide {
+  display: none;
 }
 
 .reminder__modal {
