@@ -1,9 +1,11 @@
+const backendIPAddress = '127.0.0.1:3000';
+
 const login = () => {
-  window.location.href = `http://127.0.0.1:3000/courseville/auth_app`;
+  window.location.href = `http://${backendIPAddress}/courseville/auth_app`;
 };
 
 const logout = () => {
-  window.location.href = `http://127.0.0.1:3000/courseville/logout`;
+  window.location.href = `http://${backendIPAddress}/courseville/logout`;
 };
 
 const getUserProfile = async () => {
@@ -12,7 +14,10 @@ const getUserProfile = async () => {
     credentials: 'include',
   };
 
-  await fetch(`http://127.0.0.1:3000/courseville/get_profile_info`, options)
+  await fetch(
+    `http://${backendIPAddress}/courseville/get_profile_info`,
+    options
+  )
     .then((response) => response.json())
     .then(async (data) => {
       toggleHideAfterLogin();
@@ -29,7 +34,7 @@ const getProps = async () => {
     credentials: 'include',
   };
 
-  await fetch(`http://127.0.0.1:3000/props`, options).then((response) =>
+  await fetch(`http://${backendIPAddress}/props`, options).then((response) =>
     response.json().then((data) => {
       data.assignments.forEach((assignment) => {
         addAssignment(assignment);
