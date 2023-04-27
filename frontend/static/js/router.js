@@ -1,3 +1,4 @@
+import Aboutus from './views/Aboutus.js';
 import Home from './views/Home.js';
 
 const pathToRegex = (path) =>
@@ -18,11 +19,19 @@ const getParams = (match) => {
 
 const navigateTo = (url) => {
   history.pushState(null, null, url);
+  const sidebar = document.querySelector('.sidebar');
+  if (sidebar && !sidebar.classList.contains('close')) {
+    sidebar.classList.add('close');
+  }
   router();
 };
 
 const router = async () => {
   const routes = [
+    {
+      path: '/aboutus',
+      view: Aboutus,
+    },
     {
       path: '/:weekOffset',
       view: Home,

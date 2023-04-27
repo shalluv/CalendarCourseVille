@@ -29,11 +29,18 @@ body {
 }
 
 .container {
-  width: 87.5%;
+  width: 100%;
+  padding: 0 6.25%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+}
+
+@media screen and (max-width: 900px) {
+  #app {
+    margin-bottom: 10rem;
+  }
 }

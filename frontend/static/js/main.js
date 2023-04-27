@@ -1,9 +1,11 @@
+const backendIPAddress = '127.0.0.1:3000';
+
 const login = () => {
-  window.location.href = `http://127.0.0.1:3000/courseville/auth_app`;
+  window.location.href = `http://${backendIPAddress}/courseville/auth_app`;
 };
 
 const logout = () => {
-  window.location.href = `http://127.0.0.1:3000/courseville/logout`;
+  window.location.href = `http://${backendIPAddress}/courseville/logout`;
 };
 
 const getUserProfile = async () => {
@@ -12,12 +14,18 @@ const getUserProfile = async () => {
     credentials: 'include',
   };
 
-  await fetch(`http://127.0.0.1:3000/courseville/get_profile_info`, options)
+  await fetch(
+    `http://${backendIPAddress}/courseville/get_profile_info`,
+    options
+  )
     .then((response) => response.json())
     .then(async (data) => {
       toggleHideAfterLogin();
-      document.getElementById('username__label').innerHTML =
-        data.user.firstname_en;
+      const username__link = document.createElement('a');
+      username__link.classList.add('username__label');
+      username__link.href = `/`;
+      username__link.innerHTML = data.user.firstname_en;
+      document.getElementById('username__label').appendChild(username__link);
       await getProps();
     })
     .catch((error) => console.error(error));
@@ -29,7 +37,7 @@ const getProps = async () => {
     credentials: 'include',
   };
 
-  await fetch(`http://127.0.0.1:3000/props`, options).then((response) =>
+  await fetch(`http://${backendIPAddress}/props`, options).then((response) =>
     response.json().then((data) => {
       data.assignments.forEach((assignment) => {
         addAssignment(assignment);
@@ -165,7 +173,7 @@ const addReminder = (reminder) => {
     };
 
     await fetch(
-      `http://localhost:3000/reminder/${reminder.reminder_id}`,
+      `http://${backendIPAddress}/reminder/${reminder.reminder_id}`,
       options
     ).then((response) => {
       if (response.status === 200) {
@@ -253,7 +261,7 @@ const postReminder = async () => {
     credentials: 'include',
   };
 
-  await fetch('http://localhost:3000/reminder/', options)
+  await fetch(`http://${backendIPAddress}}/reminder/`, options)
     .then((response) => {
       if (response.status === 200) {
         toggleReminderModal();
@@ -271,6 +279,13 @@ const toggleSidebar = () => {
 
 const toggleReminderModal = () => {
   document.querySelector('.reminder__modal').classList.toggle('close');
+
+  const now = new Date();
+  document.getElementById('reminder__day').valueAsDate = now;
+  document.getElementById('reminder__time').value = `${now
+    .getHours()
+    .toString()
+    .padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
 };
 
 const goToPreviousWeek = () => {
@@ -285,9 +300,4 @@ const goToNextWeek = () => {
 
 document.addEventListener('DOMContentLoaded', async () => {
   await getUserProfile();
-  const now = new Date();
-  document.getElementById('reminder__day').valueAsDate = now;
-  document.getElementById(
-    'reminder__time'
-  ).value = `${now.getHours()}:${now.getMinutes()}`;
 });
