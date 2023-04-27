@@ -18,7 +18,7 @@ export default class extends AbstractView {
 
     const groupLogo = document.createElement('img');
     groupLogo.classList.add('group__logo');
-    groupLogo.src = `./static/images/logo.png`;
+    groupLogo.src = `./static/images/group-logo.png`;
     groupLogo.alt = `group logo`;
 
     const groupLogoHolder = document.createElement('div');
