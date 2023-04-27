@@ -43,30 +43,47 @@ export default class extends AbstractView {
 			>
 				+ Add reminders
 			</button>
-			<ul class="reminder__modal close">
-				<label class="reminder__modal__close" onclick="toggleReminderModal();"
-					>X</label
-				>
-				<label class="reminder__input__label">Title: </label>
-				<input
-					class="reminder__input"
-					type="text"
-					name="title"
-					placeholder="Please insert the title"
-				/>
-				<label class="reminder__input__label">Day: </label>
-				<input class="reminder__input" type="date" name="day" />
-				<label class="reminder__input__label">Time: </label>
-				<input class="reminder__input" type="time" name="time" />
-				<label class="reminder__input__label">Link: </label>
-				<input
-					class="reminder__input"
-					type="text"
-					name="link"
-					placeholder="Please insert the link"
-				/>
-				<button class="reminder__submit">Confirm</button>
-			</ul>
+			<div class="reminder__modal close">
+        <label class="reminder__modal__close" onclick="toggleReminderModal();"
+          >X</label
+        >
+        <label class="reminder__input__label">Title: </label>
+        <input
+          class="reminder__input"
+          type="text"
+          name="title"
+          id="reminder__title"
+          placeholder="Please insert the title"
+        />
+        <label class="reminder__input__label">Day: </label>
+        <input class="reminder__input" type="date" name="day" id="reminder__day" />
+        <label class="reminder__input__label">Time: </label>
+        <input class="reminder__input" type="time" name="time" id="reminder__time" />
+        <label class="reminder__input__label">Color: </label>
+        <select class="reminder__select" name="color" id="reminder__color">
+          <option value="0" style="background-color: #1c435a" slected>Blue</option>
+          <option value="1" style="background-color: #1b4929">Green</option>
+          <option value="2" style="background-color: #652e4d">Purple</option>
+          <option value="3" style="background-color: #2f3337">Black</option>
+        </select>
+        <label class="reminder__input__label">Icon: </label>
+        <select class="reminder__select" name="icon" id="reminder__icon">
+          <option value="0" selected>No icon</option>
+          <option value="1">Zoom</option>
+          <option value="2">Discord</option>
+          <option value="3">Classroom</option>
+          <option value="4">MyCourseVille</option>
+        </select>
+        <label class="reminder__input__label">Link: </label>
+        <input
+          class="reminder__input"
+          type="text"
+          name="link"
+          id="reminder__link"
+          placeholder="Please insert the link"
+        />
+        <button class="reminder__submit" onclick="postReminder();">Confirm</button>
+      </div>
 		</div>`;
   }
 
@@ -112,8 +129,9 @@ export default class extends AbstractView {
       const card_date = document.createElement('h3');
       card_date.classList.add('card__date');
       if (
-        Math.floor(day.getTime() / (1000 * 60 * 60 * 24)) ===
-        Math.floor(this.now.getTime() / (1000 * 60 * 60 * 24))
+        day.getFullYear() === this.now.getFullYear() &&
+        day.getMonth() === this.now.getMonth() &&
+        day.getDate() === this.now.getDate()
       ) {
         card_date.classList.add('today');
       }
