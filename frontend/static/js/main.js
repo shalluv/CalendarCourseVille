@@ -28,8 +28,13 @@ const getUserProfile = async () => {
       document.getElementById('username__label').appendChild(username__link);
       await getProps();
     })
-    .catch((error) => console.error(error));
+    .catch((error) => console.error(error))
+    .finally(() => {
+      removeLoading();
+    });
+};
 
+const removeLoading = () => {
   const days = document.getElementsByClassName('day');
   for (let i = 0; i < days.length; i++) {
     days[i].classList.remove('loading');
