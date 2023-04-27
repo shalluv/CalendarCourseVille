@@ -1,6 +1,18 @@
-<h1 align="center">Group 1 Final Project</h1>
+<!-- This is a web app about being calendar that is fetching data from myCourseVille showing student their courses' assignments and schdules -->
+<h1 align="center">CalendarCourseVille</h1>
 
-This is the final project for Group 1 of 2110221 Computer Engineering Essentials course at Chulalongkorn University.
+Have you ever missed an assignment because you forgot to check myCourseVille? Well, this web app is for you! CalendarCourseVille is a web app that fetches data from myCourseVille and shows you your courses' assignments and schedules in a calendar view. You can also add your own events to the calendar.
+
+> This is the final project for Group 1 of 2110221 Computer Engineering Essentials course at Chulalongkorn University.
+
+> If you are looking for the backend repository, please go to [this repository](https://github.com/shalluv/comengess-backend).
+
+## Table of Contents
+
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installing](#installing)
+- [How to contribute](#how-to-contribute)
 
 ## Getting Started
 
@@ -19,7 +31,7 @@ This is the final project for Group 1 of 2110221 Computer Engineering Essentials
 - change directory to the project folder by `cd comengess`
 - run `pnpm install` to install dependencies
 - run `pnpm dev` to start the server
-- open `localhost:3000` in your browser
+- open `localhost:5500` in your browser
 
 ## How to contribute
 
