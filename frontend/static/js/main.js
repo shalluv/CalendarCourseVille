@@ -272,7 +272,7 @@ const postReminder = async () => {
     credentials: 'include',
   };
 
-  await fetch(`http://${backendIPAddress}}/reminder/`, options)
+  await fetch(`http://${backendIPAddress}/reminder/`, options)
     .then((response) => {
       if (response.status === 200) {
         toggleReminderModal();
