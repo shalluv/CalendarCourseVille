@@ -20,6 +20,7 @@ const getUserProfile = async () => {
   )
     .then((response) => response.json())
     .then(async (data) => {
+      if (data.error) return;
       toggleHideAfterLogin();
       const username__link = document.createElement('a');
       username__link.classList.add('username__label');
