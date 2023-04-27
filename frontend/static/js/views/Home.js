@@ -118,6 +118,7 @@ export default class extends AbstractView {
     this.days.forEach((day) => {
       const day_li = document.createElement('li');
       day_li.classList.add('day');
+      day_li.classList.add('loading');
       const day_label = document.createElement('h2');
       day_label.classList.add('day__label');
       day_label.innerHTML = day.toLocaleDateString('en-US', {

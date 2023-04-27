@@ -29,6 +29,11 @@ const getUserProfile = async () => {
       await getProps();
     })
     .catch((error) => console.error(error));
+
+  const days = document.getElementsByClassName('day');
+  for (let i = 0; i < days.length; i++) {
+    days[i].classList.remove('loading');
+  }
 };
 
 const getProps = async () => {
