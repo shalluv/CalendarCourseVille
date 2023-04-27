@@ -20,6 +20,7 @@ const getUserProfile = async () => {
   )
     .then((response) => response.json())
     .then(async (data) => {
+      if (data.error) return;
       toggleHideAfterLogin();
       const username__link = document.createElement('a');
       username__link.classList.add('username__label');
@@ -28,8 +29,13 @@ const getUserProfile = async () => {
       document.getElementById('username__label').appendChild(username__link);
       await getProps();
     })
-    .catch((error) => console.error(error));
+    .catch((error) => console.error(error))
+    .finally(() => {
+      removeLoading();
+    });
+};
 
+const removeLoading = () => {
   const days = document.getElementsByClassName('day');
   for (let i = 0; i < days.length; i++) {
     days[i].classList.remove('loading');
