@@ -1,7 +1,9 @@
 .header {
   width: 100%;
+  max-width: 100vw;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .header__month {
