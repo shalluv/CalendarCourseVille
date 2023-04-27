@@ -21,8 +21,11 @@ const getUserProfile = async () => {
     .then((response) => response.json())
     .then(async (data) => {
       toggleHideAfterLogin();
-      document.getElementById('username__label').innerHTML =
-        data.user.firstname_en;
+      const username__link = document.createElement('a');
+      username__link.classList.add('username__label');
+      username__link.href = `/`;
+      username__link.innerHTML = data.user.firstname_en;
+      document.getElementById('username__label').appendChild(username__link);
       await getProps();
     })
     .catch((error) => console.error(error));
@@ -276,6 +279,13 @@ const toggleSidebar = () => {
 
 const toggleReminderModal = () => {
   document.querySelector('.reminder__modal').classList.toggle('close');
+
+  const now = new Date();
+  document.getElementById('reminder__day').valueAsDate = now;
+  document.getElementById('reminder__time').value = `${now
+    .getHours()
+    .toString()
+    .padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
 };
 
 const goToPreviousWeek = () => {
@@ -290,9 +300,4 @@ const goToNextWeek = () => {
 
 document.addEventListener('DOMContentLoaded', async () => {
   await getUserProfile();
-  const now = new Date();
-  document.getElementById('reminder__day').valueAsDate = now;
-  document.getElementById(
-    'reminder__time'
-  ).value = `${now.getHours()}:${now.getMinutes()}`;
 });

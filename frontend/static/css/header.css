@@ -8,6 +8,8 @@
   font-weight: 700;
   font-size: 3.5rem;
   color: #f8f7fa;
+  display: flex;
+  align-items: end;
 }
 
 .header__year {
@@ -15,4 +17,6 @@
   font-size: 3.5rem;
   letter-spacing: 0.06em;
   color: rgba(221, 224, 255, 0.5);
+  display: flex;
+  align-items: end;
 }

@@ -186,11 +186,14 @@
 
   .next__week__button,
   .previous__week__button {
-    bottom: 5%;
+    position: fixed;
+    top: auto;
+    bottom: 3.2rem;
+    z-index: 40;
   }
 
   .next__week__button {
-    left: 80%;
+    right: 20%;
   }
 
   .previous__week__button {

@@ -17,7 +17,7 @@
 }
 
 .reminder__holder {
-  z-index: 10;
+  z-index: 30;
   position: relative;
   width: 100%;
   display: flex;
@@ -103,7 +103,30 @@
 }
 
 @media screen and (max-width: 900px) {
-  .add__reminder__button {
-    margin-bottom: 4rem;
+  .reminder__holder {
+    background-color: #262527;
+    position: fixed;
+    bottom: 3rem;
+    z-index: 35;
+  }
+
+  .login__button {
+    z-index: 40;
+    position: fixed;
+    bottom: 2.8rem;
+  }
+
+  .reminder__modal {
+    top: -20rem;
+    z-index: 45;
+  }
+
+  .reminder__modal.close {
+    transform: translateY(75%) scale(0);
+  }
+
+  .add__reminder__button,
+  .login__button {
+    width: 50%;
   }
 }

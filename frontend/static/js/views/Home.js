@@ -4,7 +4,7 @@ export default class extends AbstractView {
   constructor(params) {
     super(params);
     this.setTitle('Home');
-    this.addCheckboxesToFooter();
+    // this.addCheckboxesToFooter();
 
     this.now = new Date();
     this.days = Array.from(
