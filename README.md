@@ -1,4 +1,3 @@
-<!-- This is a web app about being calendar that is fetching data from myCourseVille showing student their courses' assignments and schdules -->
 <h1 align="center">CalendarCourseVille</h1>
 
 Have you ever missed an assignment because you forgot to check myCourseVille? Well, this web app is for you! CalendarCourseVille is a web app that fetches data from myCourseVille and shows you your courses' assignments and schedules in a calendar view. You can also add your own events to the calendar.
