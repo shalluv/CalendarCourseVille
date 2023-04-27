@@ -55,14 +55,14 @@ const addAssignment = (assignment) => {
   );
   if (!card) return;
 
-  const cardEvent = document.createElement('a');
+  const cardEvent = document.createElement('div');
   cardEvent.classList.add('card__event');
-  cardEvent.href = assignment.link;
-  cardEvent.target = '_blank';
 
-  const eventItem = document.createElement('div');
+  const eventItem = document.createElement('a');
   eventItem.classList.add('event__item');
   eventItem.classList.add('assignment');
+  eventItem.href = assignment.link;
+  eventItem.target = '_blank';
 
   const eventDueTime = document.createElement('h4');
   eventDueTime.classList.add('event__end__time');
@@ -97,18 +97,18 @@ const addClass = (course, schedule) => {
   if (!card) return;
   const endTime = new Date(schedule.end_time * 1000);
 
-  const cardEvent = document.createElement('a');
+  const cardEvent = document.createElement('div');
   cardEvent.classList.add('card__event');
-  cardEvent.href = course.link;
-  cardEvent.target = '_blank';
 
   const eventStartTime = document.createElement('h4');
   eventStartTime.classList.add('event__start__time');
   eventStartTime.innerHTML = `${startTime.getHours()}:${startTime.getMinutes()}`;
 
-  const eventItem = document.createElement('div');
+  const eventItem = document.createElement('a');
   eventItem.classList.add('event__item');
   eventItem.classList.add('onsite');
+  eventItem.href = course.link;
+  eventItem.target = '_blank';
 
   const eventEndTime = document.createElement('h4');
   eventEndTime.classList.add('event__end__time');
@@ -155,6 +155,25 @@ const addReminder = (reminder) => {
     '#2F3337',
   ][reminder.color];
 
+  const eventDeleteButton = document.createElement('button');
+  eventDeleteButton.classList.add('event__delete__button');
+  eventDeleteButton.innerHTML = 'X';
+  eventDeleteButton.addEventListener('click', async () => {
+    const options = {
+      method: 'DELETE',
+      credentials: 'include',
+    };
+
+    await fetch(
+      `http://localhost:3000/reminder/${reminder.reminder_id}`,
+      options
+    ).then((response) => {
+      if (response.status === 200) {
+        window.location.reload();
+      }
+    });
+  });
+
   const eventDueTime = document.createElement('h4');
   eventDueTime.classList.add('event__end__time');
   eventDueTime.innerHTML = `${duetime.getHours()}:${duetime.getMinutes()}`;
@@ -163,6 +182,7 @@ const addReminder = (reminder) => {
   eventItemTitle.classList.add('event__item__title');
   eventItemTitle.innerHTML = reminder.title;
 
+  eventItemTitle.prepend(eventDeleteButton);
   eventItem.appendChild(eventItemTitle);
 
   if (reminder.icon) {
@@ -220,6 +240,7 @@ const postReminder = async () => {
     duetime,
     color: parseInt(color),
     icon: parseInt(icon),
+    link,
   };
 
   const options = {
@@ -264,4 +285,9 @@ const goToNextWeek = () => {
 
 document.addEventListener('DOMContentLoaded', async () => {
   await getUserProfile();
+  const now = new Date();
+  document.getElementById('reminder__day').valueAsDate = now;
+  document.getElementById(
+    'reminder__time'
+  ).value = `${now.getHours()}:${now.getMinutes()}`;
 });
