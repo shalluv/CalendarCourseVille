@@ -50,24 +50,91 @@ const getProps = async () => {
 
   await fetch(`http://${backendIPAddress}/props`, options).then((response) =>
     response.json().then((data) => {
-      data.assignments.forEach((assignment) => {
-        addAssignment(assignment);
-      });
-
-      data.courses.courses.forEach((course) => {
-        course.schedule.forEach((schedule) => {
-          addClass(course, schedule);
-        });
-      });
-
-      data.reminders.forEach((reminder) => {
-        addReminder(reminder);
-      });
+      if (data.error) {
+        console.error(data.error);
+        return;
+      }
+      renderProps(data);
     })
   );
 };
 
-const addAssignment = (assignment) => {
+const renderProps = (data) => {
+  const events = data.assignments
+    ?.flatMap((assignment) => {
+      return {
+        ...assignment,
+        type: 'assignment',
+      };
+    })
+    .concat(
+      data.courses?.courses?.flatMap((course) => {
+        return course.schedule?.map((schedule) => {
+          return {
+            ...schedule,
+            course_name: course.course_name,
+            course_link: course.link,
+            type: 'class',
+          };
+        });
+      })
+    )
+    .concat(
+      data.courses?.courses?.flatMap((course) => {
+        return course.online_meetings?.map((meeting) => {
+          return {
+            ...meeting,
+            course_name: course.course_name,
+            type: 'online_meeting',
+          };
+        });
+      })
+    )
+    .concat(
+      data.reminder?.flatMap((reminder) => {
+        return {
+          ...reminder,
+          type: 'reminder',
+        };
+      })
+    )
+    .filter((event) => {
+      const eventTime =
+        event?.duetime || event?.start_time || event?.start_epoch;
+      const eventDate = new Date(eventTime * 1000);
+      const card = document.getElementById(
+        `${eventDate.getFullYear()}-${eventDate.getMonth()}-${eventDate.getDate()}`
+      );
+      if (!card) return false;
+      return true;
+    })
+    .sort((a, b) => {
+      const aTime = a.duetime || a.start_time || a.start_epoch;
+      const bTime = b.duetime || b.start_time || b.start_epoch;
+      return aTime - bTime;
+    });
+
+  events.forEach((event) => {
+    switch (event.type) {
+      case 'assignment':
+        renderAssignment(event);
+        break;
+      case 'class':
+        renderClass(event);
+        break;
+      case 'online_meeting':
+        renderOnlineMeeting(event);
+        break;
+      case 'reminder':
+        renderReminder(event);
+        break;
+      default:
+        break;
+    }
+  });
+};
+
+const renderAssignment = (assignment) => {
   const duetime = new Date(assignment.duetime * 1000);
   const card = document.getElementById(
     `${duetime.getFullYear()}-${duetime.getMonth()}-${duetime.getDate()}`
@@ -85,7 +152,13 @@ const addAssignment = (assignment) => {
 
   const eventDueTime = document.createElement('h4');
   eventDueTime.classList.add('event__end__time');
-  eventDueTime.innerHTML = `${duetime.getHours()}:${duetime.getMinutes()}`;
+  eventDueTime.innerHTML = `${duetime.getHours().toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}:${duetime.getMinutes().toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}`;
 
   const eventItemTitle = document.createElement('h5');
   eventItemTitle.classList.add('event__item__title');
@@ -108,7 +181,7 @@ const addAssignment = (assignment) => {
   card.appendChild(cardEvent);
 };
 
-const addClass = (course, schedule) => {
+const renderClass = (schedule) => {
   const startTime = new Date(schedule.start_time * 1000);
   const card = document.getElementById(
     `${startTime.getFullYear()}-${startTime.getMonth()}-${startTime.getDate()}`
@@ -121,21 +194,33 @@ const addClass = (course, schedule) => {
 
   const eventStartTime = document.createElement('h4');
   eventStartTime.classList.add('event__start__time');
-  eventStartTime.innerHTML = `${startTime.getHours()}:${startTime.getMinutes()}`;
+  eventStartTime.innerHTML = `${startTime.getHours().toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}:${startTime.getMinutes().toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}`;
 
   const eventItem = document.createElement('a');
   eventItem.classList.add('event__item');
   eventItem.classList.add('onsite');
-  eventItem.href = course.link;
+  eventItem.href = schedule.course_link;
   eventItem.target = '_blank';
 
   const eventEndTime = document.createElement('h4');
   eventEndTime.classList.add('event__end__time');
-  eventEndTime.innerHTML = `${endTime.getHours()}:${endTime.getMinutes()}`;
+  eventEndTime.innerHTML = `${endTime.getHours().toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}:${endTime.getMinutes().toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}`;
 
   const eventItemTitle = document.createElement('h5');
   eventItemTitle.classList.add('event__item__title');
-  eventItemTitle.innerHTML = course.course_name;
+  eventItemTitle.innerHTML = schedule.course_name;
 
   const event__icon__holder = document.createElement('div');
   event__icon__holder.classList.add('event__icon__holder');
@@ -155,7 +240,7 @@ const addClass = (course, schedule) => {
   card.appendChild(cardEvent);
 };
 
-const addReminder = (reminder) => {
+const renderReminder = (reminder) => {
   const duetime = new Date(reminder.duetime * 1000);
   const card = document.getElementById(
     `${duetime.getFullYear()}-${duetime.getMonth()}-${duetime.getDate()}`
@@ -195,7 +280,13 @@ const addReminder = (reminder) => {
 
   const eventDueTime = document.createElement('h4');
   eventDueTime.classList.add('event__end__time');
-  eventDueTime.innerHTML = `${duetime.getHours()}:${duetime.getMinutes()}`;
+  eventDueTime.innerHTML = `${duetime.getHours().toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}:${duetime.getMinutes().toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}`;
 
   const eventItemTitle = document.createElement('h5');
   eventItemTitle.classList.add('event__item__title');
@@ -223,6 +314,68 @@ const addReminder = (reminder) => {
 
   cardEvent.appendChild(eventItem);
   cardEvent.appendChild(eventDueTime);
+
+  card.appendChild(cardEvent);
+};
+
+const renderOnlineMeeting = (meeting) => {
+  const startEpoch = new Date(meeting.start_epoch * 1000);
+  const card = document.getElementById(
+    `${startEpoch.getFullYear()}-${startEpoch.getMonth()}-${startEpoch.getDate()}`
+  );
+  if (!card) return;
+
+  const endEpoch = new Date(
+    startEpoch.getTime() + meeting.duration_minute * 60 * 1000
+  );
+
+  const cardEvent = document.createElement('div');
+  cardEvent.classList.add('card__event');
+
+  const eventStartTime = document.createElement('h4');
+  eventStartTime.classList.add('event__start__time');
+  eventStartTime.innerHTML = `${startEpoch.getHours().toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}:${startEpoch.getMinutes().toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}`;
+
+  const eventItem = document.createElement('a');
+  eventItem.classList.add('event__item');
+  eventItem.classList.add('zoom');
+  eventItem.href = meeting.link;
+  eventItem.target = '_blank';
+
+  const eventEndTime = document.createElement('h4');
+  eventEndTime.classList.add('event__end__time');
+  eventEndTime.innerHTML = `${endEpoch.getHours().toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}:${endEpoch.getMinutes().toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}`;
+
+  const eventItemTitle = document.createElement('h5');
+  eventItemTitle.classList.add('event__item__title');
+  eventItemTitle.innerHTML = meeting.course_name;
+
+  const event__icon__holder = document.createElement('div');
+  event__icon__holder.classList.add('event__icon__holder');
+
+  const event__icon = document.createElement('img');
+  event__icon.classList.add('event__icon');
+  event__icon.src = './static/images/icon-zoom.svg';
+  event__icon.alt = 'icon for online meeting event';
+
+  event__icon__holder.appendChild(event__icon);
+  eventItem.appendChild(eventItemTitle);
+  eventItem.appendChild(event__icon__holder);
+  cardEvent.appendChild(eventStartTime);
+  cardEvent.appendChild(eventItem);
+  cardEvent.appendChild(eventEndTime);
 
   card.appendChild(cardEvent);
 };
@@ -295,8 +448,13 @@ const toggleReminderModal = () => {
   document.getElementById('reminder__day').valueAsDate = now;
   document.getElementById('reminder__time').value = `${now
     .getHours()
-    .toString()
-    .padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+    .toLocaleString('en-US', {
+      minimumIntegerDigits: 2,
+      useGrouping: false,
+    })}:${now.getMinutes().toLocaleString('en-US', {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}`;
 };
 
 const goToPreviousWeek = () => {
