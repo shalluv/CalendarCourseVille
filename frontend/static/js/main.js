@@ -91,7 +91,7 @@ const renderProps = (data) => {
       })
     )
     .concat(
-      data.reminder?.flatMap((reminder) => {
+      data.reminders?.flatMap((reminder) => {
         return {
           ...reminder,
           type: 'reminder',
