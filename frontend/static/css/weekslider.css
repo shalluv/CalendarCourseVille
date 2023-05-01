@@ -62,7 +62,9 @@
   background-color: #1bd45a;
   border-radius: 100%;
   padding: 0.25rem 0.25rem;
-  width: fit-content;
+  width: 2rem;
+  min-width: fit-content;
+  text-align: center;
   margin-left: auto;
   color: #28272a;
 }
